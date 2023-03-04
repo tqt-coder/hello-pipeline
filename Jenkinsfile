@@ -17,32 +17,32 @@ pipeline {
     }
     stage('Build') {
       steps {
-        dir('spring-boot-hello-world') {
+          sh 'cd ./spring-boot-hello-world'
           sh 'mvn clean install'
-        }
       }
     }
-    stage('Test') {
-      steps {
-        dir('spring-boot-hello-world') {
-          sh 'mvn test'
-        }
-      }
-    }
-    stage('Package') {
-        steps {
-          dir('spring-boot-hello-world') {
-            sh 'mvn package'
-          }
-        }
-        post {
-          success {
-            dir('spring-boot-hello-world') {
-            archiveArtifacts 'target/*.jar'
-            }
-          }
-        }
-    }
+
+    // stage('Test') {
+    //   steps {
+    //     dir('spring-boot-hello-world') {
+    //       sh 'mvn test'
+    //     }
+    //   }
+    // }
+    // stage('Package') {
+    //     steps {
+    //       dir('spring-boot-hello-world') {
+    //         sh 'mvn package'
+    //       }
+    //     }
+    //     post {
+    //       success {
+    //         dir('spring-boot-hello-world') {
+    //         archiveArtifacts 'target/*.jar'
+    //         }
+    //       }
+    //     }
+    // }
   // stage('Copy') {
   //   steps {
   //     fileOperations([fileCopyOperation(
@@ -54,5 +54,5 @@ pipeline {
   //   }
   // }
   }
-  }
+}
 
