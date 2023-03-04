@@ -1,9 +1,21 @@
 pipeline {
   agent any
+  tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+  }
   stages {
     stage('Clean Up') {
       steps {
         deleteDir()
+      }
+    }
+    stage('Initialize') {
+      steps {
+        sh '''
+              echo "PATH = ${PATH}"
+              echo "M2_HOME = ${M2_HOME}"
+                '''
       }
     }
     stage('Clone Repo') {
@@ -39,16 +51,16 @@ pipeline {
           }
         }
     }
-    // stage('Copy') {
-    //   steps {
-    //     fileOperations([fileCopyOperation(
-    //     excludes: '',
-    //     flattenFiles: false,
-    //     includes: '**/*.jar',
-    //     targetLocation: "C:\\output"
-    //     )])
-    //   }
-    // }
+  // stage('Copy') {
+  //   steps {
+  //     fileOperations([fileCopyOperation(
+  //     excludes: '',
+  //     flattenFiles: false,
+  //     includes: '**/*.jar',
+  //     targetLocation: "C:\\output"
+  //     )])
+  //   }
+  // }
   }
 }
 
