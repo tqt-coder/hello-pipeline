@@ -15,13 +15,14 @@ pipeline {
         sh 'git clone https://github.com/tranquoctuan2001/hello-pipeline.git'
       }
     }
-    dir('hello-pipeline') {
+
       stage('Build') {
         steps {
+          dir('hello-pipeline') {
           sh 'mvn clean install'
+          }
         }
       }
-    }
 
   // stage('Test') {
   //   steps {
