@@ -1,21 +1,13 @@
 pipeline {
-  agent any
-  tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
+  agent
+  {
+    docker { image 'maven:3.9.0-eclipse-temurin-11'
+    }
   }
   stages {
     stage('Clean Up') {
       steps {
         deleteDir()
-      }
-    }
-    stage('Initialize') {
-      steps {
-        sh '''
-              echo "PATH = ${PATH}"
-              echo "M2_HOME = ${M2_HOME}"
-                '''
       }
     }
     stage('Clone Repo') {
@@ -62,5 +54,5 @@ pipeline {
   //   }
   // }
   }
-}
+  }
 
