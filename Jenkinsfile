@@ -12,12 +12,12 @@ pipeline {
     }
     stage('Clone Repo') {
       steps {
-        sh 'git clone https://github.com/CBoton/spring-boot-hello-world.git'
+        sh 'git clone https://github.com/tranquoctuan2001/hello-pipeline.git'
       }
     }
     stage('Build') {
       steps {
-          sh 'cd ./spring-boot-hello-world'
+          sh 'cd ./hello-pipeline'
           sh 'mvn clean install'
       }
     }
