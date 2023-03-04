@@ -1,55 +1,54 @@
 pipeline {
   agent any
   stages {
-    stage("Clean Up"){
-      steps{
+    stage('Clean Up') {
+      steps {
         deleteDir()
       }
     }
-    stage("Clone Repo"){
+    stage('Clone Repo') {
       steps {
-        bat "git clone https://github.com/CBoton/spring-boot-hello-world.git"
+        sh 'git clone https://github.com/CBoton/spring-boot-hello-world.git'
       }
     }
-    stage("Build"){
+    stage('Build') {
       steps {
-        dir("spring-boot-hello-world") {
-          bat "mvn clean install"
+        dir('spring-boot-hello-world') {
+          sh 'mvn clean install'
         }
       }
     }
-    stage("Test") {
+    stage('Test') {
       steps {
-        dir("spring-boot-hello-world") {
-          bat "mvn test"
+        dir('spring-boot-hello-world') {
+          sh 'mvn test'
         }
       }
     }
-    stage("Package") {
+    stage('Package') {
         steps {
-          dir("spring-boot-hello-world") {
-            bat "mvn package"
-        }
+          dir('spring-boot-hello-world') {
+            sh 'mvn package'
+          }
         }
         post {
           success {
-            dir("spring-boot-hello-world") {
+            dir('spring-boot-hello-world') {
             archiveArtifacts 'target/*.jar'
+            }
           }
         }
-      }
     }
-    stage("Copy"){
-      steps {
-       
-        fileOperations([fileCopyOperation(
-        excludes: '',
-        flattenFiles: false,
-        includes: '**/*.jar',
-        targetLocation: "C:\\output"
-        )])
-      }
-    }
+    // stage('Copy') {
+    //   steps {
+    //     fileOperations([fileCopyOperation(
+    //     excludes: '',
+    //     flattenFiles: false,
+    //     includes: '**/*.jar',
+    //     targetLocation: "C:\\output"
+    //     )])
+    //   }
+    // }
   }
 }
 
