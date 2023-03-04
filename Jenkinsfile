@@ -15,34 +15,35 @@ pipeline {
         sh 'git clone https://github.com/tranquoctuan2001/hello-pipeline.git'
       }
     }
-    stage('Build') {
-      steps {
-          sh 'cd ./hello-pipeline'
+    dir('hello-pipeline') {
+      stage('Build') {
+        steps {
           sh 'mvn clean install'
+        }
       }
     }
 
-    // stage('Test') {
-    //   steps {
-    //     dir('spring-boot-hello-world') {
-    //       sh 'mvn test'
-    //     }
-    //   }
-    // }
-    // stage('Package') {
-    //     steps {
-    //       dir('spring-boot-hello-world') {
-    //         sh 'mvn package'
-    //       }
-    //     }
-    //     post {
-    //       success {
-    //         dir('spring-boot-hello-world') {
-    //         archiveArtifacts 'target/*.jar'
-    //         }
-    //       }
-    //     }
-    // }
+  // stage('Test') {
+  //   steps {
+  //     dir('spring-boot-hello-world') {
+  //       sh 'mvn test'
+  //     }
+  //   }
+  // }
+  // stage('Package') {
+  //     steps {
+  //       dir('spring-boot-hello-world') {
+  //         sh 'mvn package'
+  //       }
+  //     }
+  //     post {
+  //       success {
+  //         dir('spring-boot-hello-world') {
+  //         archiveArtifacts 'target/*.jar'
+  //         }
+  //       }
+  //     }
+  // }
   // stage('Copy') {
   //   steps {
   //     fileOperations([fileCopyOperation(
@@ -55,4 +56,3 @@ pipeline {
   // }
   }
 }
-
