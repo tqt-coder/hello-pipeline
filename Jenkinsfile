@@ -18,9 +18,7 @@ pipeline {
 
       stage('Build') {
         steps {
-          dir('hello-pipeline') {
-          sh 'mvn clean install'
-          }
+          sh 'pwd'
         }
       }
 
