@@ -10,11 +10,11 @@ pipeline {
         deleteDir()
       }
     }
-    stage('Clone Repo') {
-      steps {
-        sh 'git clone https://github.com/tranquoctuan2001/hello-pipeline.git'
-      }
-    }
+    // stage('Clone Repo') {
+    //   steps {
+    //     sh 'git clone https://github.com/tranquoctuan2001/hello-pipeline.git'
+    //   }
+    // }
 
       stage('Build') {
         steps {
